@@ -65,6 +65,7 @@ formOrden.addEventListener('submit', (event) => {
         alert('Selecciona un menú antes de continuar.')
         return
     }
+
     const orden = {
         id: contadorOrden++,
         cliente: { ...clienteActivo },
@@ -72,7 +73,25 @@ formOrden.addEventListener('submit', (event) => {
         menuNombre: menuSeleccion.dataset.name,
         precio: parsearPrecio(menuSeleccion.dataset.price)
     }
+
     encolarOrden(orden)
+
+    const payload = {
+        nombre: orden.cliente.nombre,
+        email: orden.cliente.email,
+        menu: orden.menuNombre,
+        precio: orden.precio
+    }
+
+    fetch('http://localhost:4000/pedido', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(payload)
+    })
+        .then(res => res.json())
+        .then(data => console.log('Pedido enviado al backend:', data))
+        .catch(err => console.error('Error enviando pedido:', err))
+
     reiniciarARegistro()
 })
 
@@ -86,16 +105,18 @@ function procesarCola() {
     if (ordenProcesando || colaOrdenes.length === 0) return
     ordenProcesando = colaOrdenes.shift()
     actualizarCola()
-    ordenActualEl.textContent = `Preparando pedido #${ordenProcesando.id} para ${ordenProcesando.cliente.nombre} (${ordenProcesando.menuNombre})...`
+    ordenActualEl.textContent =
+        `Preparando pedido #${ordenProcesando.id} para ${ordenProcesando.cliente.nombre} (${ordenProcesando.menuNombre})...`
     setTimeout(() => {
         const numeroFactura = `FF-${String(ordenProcesando.id).padStart(4, '0')}`
         const li = document.createElement('li')
-        li.innerHTML = `Factura <strong>${numeroFactura}</strong> enviada a <strong>${ordenProcesando.cliente.email}</strong> por el pedido <em>${ordenProcesando.menuNombre}</em> (${formatoCOP.format(ordenProcesando.precio)}).`
+        li.innerHTML =
+            `Factura <strong>${numeroFactura}</strong> enviada a <strong>${ordenProcesando.cliente.email}</strong> por el pedido <em>${ordenProcesando.menuNombre}</em> (${formatoCOP.format(ordenProcesando.precio)}).`
         registroFactura.prepend(li)
         ordenActualEl.textContent = 'No hay pedidos en procesamiento.'
         ordenProcesando = null
         procesarCola()
-    }, 20000)
+    }, 30000)
 }
 
 function actualizarCola() {
