@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pedidos - Fast Food Express</title>
+    <link rel="icon" href="./img/icon.webp">
+    <link rel="stylesheet" href="./styles.css">
+</head>
+<body>
+    <header>
+        <img src="./img/icon.webp" alt="logo" width="300">
+        <h1>Fast Food Express</h1>
+        <p>🍟 “Pide fácil, come rápido, disfruta siempre” 🥤</p><br><br>
+    </header>
+
+    <main>
+        <section id="carta-registro" class="carta">
+            <h2>Registrate Cliente</h2>
+            <p>Ingresa tus datos para hacer un nuevo pedido.</p>
+            <form id="form-registro">
+                <label for="nombre-cliente">Nombre:</label>
+                <input type="text" id="nombre-cliente" name="nombre-cliente" required placeholder="Ej: Johan Arevalo">
+                <label for="email-cliente">Correo electrónico:</label>
+                <input type="email" id="email-cliente" name="email-cliente" required placeholder="arevalo@gmail.com">
+                <button type="submit">Continuar con el pedido</button>
+            </form>
+        </section>
+
+        <section id="carta-orden" class="carta carta-oculta">
+            <div>
+                <h2>Hola, <span id="mostrar-cliente">cliente</span> 👋</h2>
+                <p>Selecciona uno de nuestros menús disponibles y confirmaremos el pedido.</p>
+            </div>
+            <form id="form-orden">
+                <input type="hidden" id="menu-seleccion" name="menu-seleccion" required>
+                <div class="menu-fila">
+                    <article class="carta-menu" data-value="combo-clasico" data-name="Combo Clásico" data-price="16.000">
+                        <h3>Combo Clásico</h3>
+                        <p>Hamburguesa tradicional, papas medianas y bebida.</p>
+                        <p class="precio-menu">$16.000</p>
+                    </article>
+                    <article class="carta-menu" data-value="combo-familiar" data-name="Combo Familiar" data-price="34.000">
+                        <h3>Combo Familiar</h3>
+                        <p>2 hamburguesas, nuggets de pollo, papas grandes y bebidas.</p>
+                        <p class="precio-menu">$34.000</p>
+                    </article>
+                    <article class="carta-menu" data-value="combo-vegetariano" data-name="Combo Vegetariano" data-price="14.000">
+                        <h3>Combo Vegetariano</h3>
+                        <p>Hamburguesa vegetariana, ensalada fresca y limonada.</p>
+                        <p class="precio-menu">$14.000</p>
+                    </article>
+                    <article class="carta-menu" data-value="combo-deluxe" data-name="Combo Deluxe" data-price="40.000">
+                        <h3>Combo Deluxe</h3>
+                        <p>Doble hamburguesa, papas rizadas y batido de vainilla.</p>
+                        <p class="precio-menu">$40.000</p>
+                    </article>
+                </div>
+                <button type="submit">Comprar y generar factura</button>
+            </form>
+        </section>
+
+        <section class="tablero-estado">
+            <div class="seccion-estado">
+                <h3>📦 Pedido en proceso</h3>
+                <p id="orden-actual" class="highlight">No hay pedidos en procesamiento.</p>
+            </div>
+            <div class="seccion-estado">
+                <h3>🕒 Cola de pedidos</h3>
+                <div id="lista-cola">
+                    <p>No hay pedidos en espera.</p>
+                </div>
+            </div>
+            <div class="seccion-estado">
+                <h3>📬 Facturas enviadas</h3>
+                <ul id="registro-factura" class="lista-registro"></ul>
+            </div>
+        </section>
+    </main>
+
+    <script src="./app.js"></script>
+</body>
+</html>

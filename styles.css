@@ -1,0 +1,247 @@
+:root {
+    color-scheme: light;
+    --primario: #ff5722;
+    --secundario: #ffccbc;
+    --bg: #f8f8f8;
+    --carta-bg: #ffffff;
+    --texto: #333333;
+    --acento: #ffc107;
+}
+
+* {
+    box-sizing: border-box;
+}
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background:
+        radial-gradient(circle at top left, rgba(255, 87, 34, 0.08), transparent 50%),
+        radial-gradient(circle at bottom right, rgba(255, 193, 7, 0.08), transparent 60%),
+        var(--bg);
+    color: var(--texto);
+    min-height: 100vh;
+}
+
+header {
+    background: linear-gradient(135deg, var(--primario), #ff784e);
+    color: white;
+    padding: 2.5rem 1.5rem;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
+}
+
+header img {
+    display: block;
+    width: 300px;
+    margin: 0 auto 0.5rem auto;
+}
+
+header h1 {
+    margin: 0;
+    font-size: 4.5rem;
+    letter-spacing: 1px;
+}
+
+header p {
+    margin-top: 0.5rem;
+    font-size: 1.2rem;
+}
+
+main {
+    max-width: 1080px;
+    margin: -60px auto 40px;
+    padding: 0 1.5rem;
+}
+
+.carta {
+    background: var(--carta-bg);
+    border-radius: 18px;
+    box-shadow: 0 20px 45px rgba(255, 87, 34, 0.1);
+    padding: 2.5rem;
+    margin-bottom: 2rem;
+    position: relative;
+    overflow: hidden;
+    z-index: 2;
+}
+
+.carta::after {
+    content: "";
+    position: absolute;
+    top: -120px;
+    right: -140px;
+    width: 240px;
+    height: 240px;
+    background: radial-gradient(circle, rgba(255, 193, 7, 0.25), transparent 60%);
+    transform: rotate(15deg);
+}
+
+.carta-oculta {
+    display: none !important;
+}
+
+h2 {
+    margin-top: 0;
+}
+
+form {
+    display: grid;
+    gap: 1rem;
+}
+
+label {
+    font-weight: 600;
+}
+
+input,
+select,
+button {
+    font-size: 1rem;
+    padding: 0.75rem 1rem;
+    border-radius: 10px;
+    border: 1px solid #ddd;
+}
+
+input:focus,
+select:focus {
+    outline: 2px solid var(--primario);
+    border-color: transparent;
+}
+
+button {
+    background: var(--primario);
+    color: white;
+    border: none;
+    font-weight: 600;
+    cursor: pointer;
+    transition: transform 0.15s ease, box-shadow 0.15s ease;
+}
+
+button:hover {
+    transform: translateY(-1px);
+    box-shadow: 0 10px 20px rgba(255, 87, 34, 0.25);
+}
+
+.menu-fila {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 1rem;
+}
+
+.carta-menu {
+    border: 1px solid rgba(255, 87, 34, 0.1);
+    border-radius: 14px;
+    padding: 1.25rem;
+    background: rgba(255, 255, 255, 0.9);
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    cursor: pointer;
+}
+
+.carta-menu.selected,
+.carta-menu:hover {
+    transform: translateY(-4px);
+    border-color: var(--primario);
+    box-shadow: 0 15px 30px rgba(255, 87, 34, 0.15);
+}
+
+.carta-menu h3 {
+    margin-top: 0;
+    color: var(--primario);
+}
+
+.carta-menu p {
+    margin-bottom: 0.25rem;
+}
+
+.precio-menu {
+    font-weight: 700;
+    color: #d84315;
+}
+
+.tablero-estado {
+    display: grid;
+    gap: 1rem;
+}
+
+.seccion-estado {
+    background: rgba(255, 255, 255, 0.85);
+    border-radius: 12px;
+    padding: 1.5rem;
+    border: 1px solid rgba(255, 87, 34, 0.12);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, 0.08);
+}
+
+.seccion-estado h3 {
+    margin-top: 0;
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+}
+
+.tablero-estado p {
+    background: rgba(255, 193, 7, 0.18);
+    border-radius: 10px;
+    padding: 0.6rem 0.8rem;
+}
+
+.highlight {
+    background: rgba(255, 193, 7, 0.18);
+    border-radius: 10px;
+    padding: 0.6rem 0.8rem;
+}
+
+.queue-item,
+.cola-item {
+    border-bottom: 1px solid #eee;
+    padding: 0.75rem 0;
+}
+
+.queue-item:last-child,
+.cola-item:last-child {
+    border-bottom: none;
+}
+
+.badge {
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+    padding: 0.35rem 0.65rem;
+    border-radius: 999px;
+    background: rgba(255, 87, 34, 0.08);
+    color: #d84315;
+    font-size: 0.85rem;
+}
+
+.lista-registro {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    display: grid;
+    gap: 0.75rem;
+}
+
+.lista-registro li {
+    background: white;
+    border-radius: 10px;
+    padding: 1rem;
+    border: 1px solid rgba(0, 0, 0, 0.05);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.06);
+}
+
+@media (max-width: 640px) {
+    header {
+        padding: 1.75rem 1rem;
+    }
+
+    header h1 {
+        font-size: 2.4rem;
+    }
+
+    main {
+        margin-top: -40px;
+    }
+
+    .carta {
+        padding: 2rem 1.5rem;
+    }
+}
