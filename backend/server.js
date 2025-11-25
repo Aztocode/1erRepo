@@ -24,7 +24,7 @@ async function conectarRabbit() {
             const pedido = JSON.parse(msg.content.toString())
             console.log(`🍔 Procesando pedido de ${pedido.nombre} - ${pedido.menu}`)
 
-            await new Promise((resolve) => setTimeout(resolve, 30000))
+            await new Promise((resolve) => setTimeout(resolve, 15000))
 
             console.log(`✅ Pedido completado para ${pedido.nombre}`)
             channel.ack(msg)

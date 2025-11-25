@@ -116,7 +116,7 @@ function procesarCola() {
         ordenActualEl.textContent = 'No hay pedidos en procesamiento.'
         ordenProcesando = null
         procesarCola()
-    }, 30000)
+    }, 15000)
 }
 
 function actualizarCola() {
